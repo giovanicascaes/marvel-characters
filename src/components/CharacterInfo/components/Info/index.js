@@ -11,7 +11,7 @@ export default function Info({ imageUrl, isLoading, id, name, description }) {
           <Descriptions.Item label="ID">{id}</Descriptions.Item>
           <Descriptions.Item label="Name">{name}</Descriptions.Item>
           <Descriptions.Item label="Description">
-            {description}
+            {description || "<None>"}
           </Descriptions.Item>
         </Descriptions>
       </Skeleton>
