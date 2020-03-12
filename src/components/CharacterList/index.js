@@ -12,6 +12,8 @@ import {
 import { CHARACTER_GET_REQUEST } from "./actions";
 import { CHARACTER_SEARCH_REQUEST } from "components/Search/actions";
 import Loading from "components/Loading";
+import { clearCharacterInfo } from "components/CharacterInfo/actions";
+import { clearCharacterSeries } from "components/CharacterSeries/actions";
 
 export default function CharacterList() {
   const [charactersToList, setCharactersToList] = useState(
@@ -39,7 +41,8 @@ export default function CharacterList() {
     characterSearch,
     isLoadingSearchCharacters,
     isSuccessSearchCharacters,
-    isErrorSearchCharacters
+    isErrorSearchCharacters,
+    isDetailsCleared
   } = useSelector(store => {
     const { characters, characterSearch, isSearchMode } = store.characters;
     return {
@@ -57,19 +60,22 @@ export default function CharacterList() {
         store,
         CHARACTER_SEARCH_REQUEST
       ),
-      isErrorSearchCharacters: isActionFailure(store, CHARACTER_SEARCH_REQUEST)
+      isErrorSearchCharacters: isActionFailure(store, CHARACTER_SEARCH_REQUEST),
+      isDetailsCleared: !store.character.id && !store.character.series.length
     };
   });
 
   useEffect(() => {
     dispatch(getCharacters());
+    dispatch(clearCharacterInfo());
+    dispatch(clearCharacterSeries());
   }, [dispatch]);
 
   useEffect(() => {
-    if (isSuccessGetCharacters) {
+    if (isSuccessGetCharacters && isDetailsCleared) {
       setCharactersToList(characters);
     }
-  }, [characters, isSuccessGetCharacters]);
+  }, [characters, isDetailsCleared, isSuccessGetCharacters]);
 
   useEffect(() => {
     if (isSearchMode) {

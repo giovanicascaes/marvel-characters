@@ -4,13 +4,14 @@ import Emptiable from "components/Emptiable";
 import Serie from "./components/Serie";
 
 export default function Series({ isLoading, series }) {
+  console.log("series:", series);
   return (
-    <Emptiable titleWhenEmpty="O personagem não apareceu em nenhuma série">
-      {(isLoading || series.length) && (
-        <>
-          <Skeleton loading={isLoading} active paragraph={false}>
-            <h3 style={{ fontWeight: "bold" }}>Series</h3>
-          </Skeleton>
+    <>
+      <Skeleton loading={isLoading} active paragraph={false}>
+        <h3 style={{ fontWeight: "bold" }}>Series</h3>
+      </Skeleton>
+      <Emptiable titleWhenEmpty="O personagem não apareceu em nenhuma série">
+        {(isLoading || series.length) && (
           <List
             itemLayout="horizontal"
             dataSource={series}
@@ -19,7 +20,7 @@ export default function Series({ isLoading, series }) {
               const serieProps = isLoading
                 ? {
                     imageUrl: "",
-                    name: "",
+                    title: "",
                     description: ""
                   }
                 : {
@@ -30,8 +31,8 @@ export default function Series({ isLoading, series }) {
               return <Serie isLoading={isLoading} {...serieProps} />;
             }}
           />
-        </>
-      )}
-    </Emptiable>
+        )}
+      </Emptiable>
+    </>
   );
 }

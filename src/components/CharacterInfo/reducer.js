@@ -1,4 +1,7 @@
-import { CHARACTER_GET_INFO_SUCCESS } from "./actions";
+import {
+  CHARACTER_GET_INFO_SUCCESS,
+  CHARACTER_GET_INFO_RESET
+} from "./actions";
 
 const INITIAL_STATE = {};
 
@@ -8,6 +11,9 @@ export default function charcterInfoReducer(state = INITIAL_STATE, action) {
       return {
         ...action.payload.data.results[0]
       };
+
+    case CHARACTER_GET_INFO_RESET:
+      return INITIAL_STATE;
 
     default:
       return state;
