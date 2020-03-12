@@ -1,20 +1,20 @@
 import React from "react";
 import { List, Skeleton } from "antd";
-import { StyledCover as Cover, Wrapper } from "./styles";
+import { StyledCover as Cover, Wrapper, InfoWrapper } from "./styles";
 
 export default function Serie({ isLoading, imageUrl, title, description }) {
   return (
     <List.Item>
       <Wrapper>
         <Cover isLoading={isLoading} imageUrl={imageUrl} />
-        <div style={{ width: "100%" }}>
+        <InfoWrapper>
           <Skeleton loading={isLoading} active>
             <List.Item.Meta
               title={title}
               description={description || "<No description>"}
             />
           </Skeleton>
-        </div>
+        </InfoWrapper>
       </Wrapper>
     </List.Item>
   );
