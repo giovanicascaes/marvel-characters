@@ -14,7 +14,7 @@ export default function CharacterCard({ id, name, imageUrl, isLoading }) {
 
   const onTabChange = () => setRedirectToDetails(true);
 
-  if (redirectToDetails) return <Redirect to={`/character/${id}`} />;
+  if (redirectToDetails) return <Redirect to={`/character/${id}`} push />;
 
   return (
     <Card
