@@ -48,24 +48,25 @@ export default function statuReducer(state = {}, action) {
   };
 }
 
-function isStatus(store, actionType, status) {
+function isStatus(store, status, actionType) {
   const [requestName] = getRequestData(actionType);
+  const typeNotStarted = !store.status || !store.status[requestName];
 
-  if (!store.status || !store.status[requestName]) {
+  if (typeNotStarted) {
     return status === IDLE;
   }
 
   return store.status[requestName] === status;
 }
 
-export function isActionLoading(store, actionType) {
-  return isStatus(store, actionType, PENDING);
+export function isActionLoading(store, ...actionTypes) {
+  return actionTypes.some(type => isStatus(store, PENDING, type));
 }
 
-export function isActionSuccess(store, actionType) {
-  return isStatus(store, actionType, RESOLVED);
+export function isActionSuccess(store, ...actionTypes) {
+  return actionTypes.every(type => isStatus(store, RESOLVED, type));
 }
 
-export function isActionFailure(store, actionType) {
-  return isStatus(store, actionType, REJECTED);
+export function isActionFailure(store, ...actionTypes) {
+  return actionTypes.some(type => isStatus(store, REJECTED, type));
 }

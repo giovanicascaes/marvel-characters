@@ -1,9 +1,9 @@
+import { CHARACTER_GET_SUCCESS } from "./actions";
 import {
-  CHARACTER_GET_SUCCESS,
   CHARACTER_SEARCH_SUCCESS,
-  CHARACTER_SEARCH_RESET,
-  CHARACTER_SEARCH_REQUEST
-} from "./actions";
+  CHARACTER_SEARCH_REQUEST,
+  CHARACTER_SEARCH_RESET
+} from "components/Search/actions";
 
 const INITIAL_STATE = {
   characters: [],

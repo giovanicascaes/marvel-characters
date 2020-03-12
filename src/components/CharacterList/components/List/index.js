@@ -1,13 +1,13 @@
 import React from "react";
-import EmptiableList from "components/EmptiableList";
+import Emptiable from "components/Emptiable";
 import Grid from "./components/Grid";
 
 export default function List({ characters, isLoading }) {
   return (
-    <EmptiableList>
+    <Emptiable>
       {characters.length && (
         <Grid characters={characters} isLoading={isLoading} />
       )}
-    </EmptiableList>
+    </Emptiable>
   );
 }

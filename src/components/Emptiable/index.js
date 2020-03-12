@@ -1,7 +1,7 @@
 import React from "react";
 import Empty from "../Empty";
 
-export default function EmptiableList({
+export default function Emptiable({
   children,
   titleWhenEmpty,
   subtitleWhenEmpty
