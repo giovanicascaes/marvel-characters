@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { createMiddleware } from "redux-api-middleware";
 import api from "api";
 import characterReducer from "components/CharacterList/reducer";
-import statusReducer from "api/statusReducer";
+import statusReducer from "api/reducer";
 
 const apiMiddleware = createMiddleware({
   fetch: api,

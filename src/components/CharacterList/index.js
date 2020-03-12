@@ -4,11 +4,12 @@ import { getCharacters } from "./actions";
 import List from "./components/List";
 import Empty from "../Empty";
 import { API_ITEMS_PER_PAGE } from "constants/parameters";
+import { isActionLoading, isActionSuccess, isActionFailure } from "api/reducer";
 import {
-  isLoadingCharacters,
-  hasGottenCharacters,
-  hasFailedGettingCharacters
-} from "api/statusReducer";
+  CHARACTER_GET_REQUEST,
+  CHARACTER_SEARCH_REQUEST
+} from "components/CharacterList/actions";
+import Loading from "components/Loading";
 
 export default function CharacterList() {
   const [charactersToList, setCharactersToList] = useState(
@@ -19,13 +20,34 @@ export default function CharacterList() {
   );
 
   const dispatch = useDispatch();
-  const { characters, isLoading, isSuccess, isError } = useSelector(store => {
-    const { characters } = store.character;
+  const {
+    isSearchMode,
+    characters,
+    isLoadingGetCharacters,
+    isSuccessGetCharacters,
+    isErrorGetCharacters,
+    characterSearch,
+    isLoadingSearchCharacters,
+    isSuccessSearchCharacters,
+    isErrorSearchCharacters
+  } = useSelector(store => {
+    const { characters, characterSearch, isSearchMode } = store.character;
     return {
       characters,
-      isLoading: isLoadingCharacters(store),
-      isSuccess: hasGottenCharacters(store),
-      isError: hasFailedGettingCharacters(store)
+      characterSearch,
+      isSearchMode,
+      isLoadingGetCharacters: isActionLoading(store, CHARACTER_GET_REQUEST),
+      isSuccessGetCharacters: isActionSuccess(store, CHARACTER_GET_REQUEST),
+      isErrorGetCharacters: isActionFailure(store, CHARACTER_GET_REQUEST),
+      isLoadingSearchCharacters: isActionLoading(
+        store,
+        CHARACTER_SEARCH_REQUEST
+      ),
+      isSuccessSearchCharacters: isActionSuccess(
+        store,
+        CHARACTER_SEARCH_REQUEST
+      ),
+      isErrorSearchCharacters: isActionFailure(store, CHARACTER_SEARCH_REQUEST)
     };
   });
 
@@ -34,12 +56,28 @@ export default function CharacterList() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccessGetCharacters) {
       setCharactersToList(characters);
     }
-  }, [characters, isSuccess]);
+  }, [characters, isSuccessGetCharacters]);
 
-  if (isError) {
+  useEffect(() => {
+    if (isSearchMode) {
+      if (isSuccessSearchCharacters) {
+        setCharactersToList(characterSearch);
+      }
+    } else if (isSuccessGetCharacters) {
+      setCharactersToList(characters);
+    }
+  }, [
+    characterSearch,
+    characters,
+    isSearchMode,
+    isSuccessGetCharacters,
+    isSuccessSearchCharacters
+  ]);
+
+  if (isErrorGetCharacters || isErrorSearchCharacters) {
     return (
       <Empty
         title="Ocorreu um erro ao buscar os personagens"
@@ -48,5 +86,11 @@ export default function CharacterList() {
     );
   }
 
-  return <List characters={charactersToList} isLoading={isLoading} />;
+  if (isLoadingSearchCharacters) {
+    return <Loading />;
+  }
+
+  return (
+    <List characters={charactersToList} isLoading={isLoadingGetCharacters} />
+  );
 }

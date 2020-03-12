@@ -21,7 +21,7 @@ export default function Character({ name, url, isLoading }) {
         />
       }
     >
-      <Skeleton loading={isLoading} active>
+      <Skeleton paragraph={false} loading={isLoading} active>
         <Meta title={name} />
       </Skeleton>
     </Card>

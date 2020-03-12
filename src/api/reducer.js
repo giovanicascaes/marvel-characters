@@ -4,7 +4,6 @@ import {
   REJECTED,
   RESOLVED
 } from "constants/apiRequestStatuses";
-import { CHARACTER_GET_REQUEST } from "../components/CharacterList/actions";
 
 function getStatusByRequestState(requestState) {
   switch (requestState) {
@@ -23,7 +22,7 @@ function getStatusByRequestState(requestState) {
 }
 
 function getRequestData(actionType) {
-  const matches = /(.*)_(REQUEST|SUCCESS|FAILURE)/.exec(actionType);
+  const matches = /(.*)_(REQUEST|SUCCESS|FAILURE|RESET)/.exec(actionType);
 
   if (!matches) return false;
 
@@ -32,7 +31,7 @@ function getRequestData(actionType) {
   return [requestName, requestState];
 }
 
-export default function(state = {}, action) {
+export default function statuReducer(state = {}, action) {
   const { type } = action;
 
   const requestData = getRequestData(type);
@@ -49,7 +48,9 @@ export default function(state = {}, action) {
   };
 }
 
-function isStatus(store, requestName, status) {
+function isStatus(store, actionType, status) {
+  const [requestName] = getRequestData(actionType);
+
   if (!store.status || !store.status[requestName]) {
     return status === IDLE;
   }
@@ -57,19 +58,14 @@ function isStatus(store, requestName, status) {
   return store.status[requestName] === status;
 }
 
-function isStatusCharacter(store, status) {
-  const [requestName] = getRequestData(CHARACTER_GET_REQUEST);
-  return isStatus(store, requestName, status);
+export function isActionLoading(store, actionType) {
+  return isStatus(store, actionType, PENDING);
 }
 
-export function isLoadingCharacters(store) {
-  return isStatusCharacter(store, PENDING);
+export function isActionSuccess(store, actionType) {
+  return isStatus(store, actionType, RESOLVED);
 }
 
-export function hasGottenCharacters(store) {
-  return isStatusCharacter(store, RESOLVED);
-}
-
-export function hasFailedGettingCharacters(store) {
-  return isStatusCharacter(store, REJECTED);
+export function isActionFailure(store, actionType) {
+  return isStatus(store, actionType, REJECTED);
 }

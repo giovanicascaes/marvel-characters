@@ -1,10 +1,12 @@
 import React from "react";
 import CharacterList from "components/CharacterList";
+import Search from "components/Search";
 
 export default function Home() {
   return (
-    <div style={{ height: "100%" }}>
+    <>
+      <Search />
       <CharacterList />
-    </div>
+    </>
   );
 }

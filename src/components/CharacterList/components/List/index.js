@@ -5,7 +5,9 @@ import Grid from "./components/Grid";
 export default function List({ characters, isLoading }) {
   return (
     <EmptiableList>
-      {characters && <Grid characters={characters} isLoading={isLoading} />}
+      {characters.length && (
+        <Grid characters={characters} isLoading={isLoading} />
+      )}
     </EmptiableList>
   );
 }
