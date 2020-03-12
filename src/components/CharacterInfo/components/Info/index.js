@@ -6,7 +6,7 @@ export default function Info({ imageUrl, isLoading, id, name, description }) {
   return (
     <Wrapper>
       <Cover imageUrl={imageUrl} isLoading={isLoading} name={name} />
-      <Skeleton loading={isLoading} paragraph={{ rows: 1 }} active>
+      <Skeleton loading={isLoading} paragraph={{ rows: 2 }} active>
         <Descriptions title="Character Info" column={2}>
           <Descriptions.Item label="ID">{id}</Descriptions.Item>
           <Descriptions.Item label="Name">{name}</Descriptions.Item>

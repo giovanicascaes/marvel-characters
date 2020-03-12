@@ -17,18 +17,18 @@ export default function CharcterInfo() {
     character: store.character.info,
     isLoading: isActionLoading(
       store,
-      CHARACTER_GET_INFO_REQUEST
-      //   CHARACTER_GET_SERIES_REQUEST
+      CHARACTER_GET_INFO_REQUEST,
+      CHARACTER_GET_SERIES_REQUEST
     ),
     isSuccess: isActionSuccess(
       store,
-      CHARACTER_GET_INFO_REQUEST
-      //   CHARACTER_GET_SERIES_REQUEST
+      CHARACTER_GET_INFO_REQUEST,
+      CHARACTER_GET_SERIES_REQUEST
     ),
     isError: isActionFailure(
       store,
-      CHARACTER_GET_INFO_REQUEST
-      //   CHARACTER_GET_SERIES_REQUEST
+      CHARACTER_GET_INFO_REQUEST,
+      CHARACTER_GET_SERIES_REQUEST
     )
   }));
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ export default function CharcterInfo() {
   if (isError) {
     return (
       <Empty
-        title="Ocorreu um erro ao buscar os detalhes do personagen"
+        title="Ocorreu um erro ao buscar os detalhes do personagem"
         subtitle="Por favor, tente novamente mais tarde"
       />
     );

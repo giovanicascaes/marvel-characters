@@ -96,7 +96,7 @@ export default function CharacterList() {
   if (isErrorGetCharacters || isErrorSearchCharacters) {
     return (
       <Empty
-        title="Ocorreu um erro ao buscar os personagens"
+        title="Ocorreu um erro ao buscar os personagems"
         subtitle="Por favor, tente novamente mais tarde"
       />
     );
