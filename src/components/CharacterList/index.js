@@ -4,11 +4,13 @@ import { getCharacters } from "./actions";
 import List from "./components/List";
 import Empty from "../Empty";
 import { API_ITEMS_PER_PAGE } from "constants/parameters";
-import { isActionLoading, isActionSuccess, isActionFailure } from "api/reducer";
 import {
-  CHARACTER_GET_REQUEST,
-  CHARACTER_SEARCH_REQUEST
-} from "components/CharacterList/actions";
+  isActionLoading,
+  isActionSuccess,
+  isActionFailure
+} from "services/api/reducer";
+import { CHARACTER_GET_REQUEST } from "./actions";
+import { CHARACTER_SEARCH_REQUEST } from "components/Search/actions";
 import Loading from "components/Loading";
 
 export default function CharacterList() {
@@ -18,6 +20,14 @@ export default function CharacterList() {
       thumbnail: {}
     }))
   );
+  const [isDoneSearchingCharacters, setIsDoneSearchingCharacters] = useState(
+    false
+  );
+
+  const finishSearchingCharacters = charactersToSet => {
+    setCharactersToList(charactersToSet);
+    setIsDoneSearchingCharacters(true);
+  };
 
   const dispatch = useDispatch();
   const {
@@ -31,7 +41,7 @@ export default function CharacterList() {
     isSuccessSearchCharacters,
     isErrorSearchCharacters
   } = useSelector(store => {
-    const { characters, characterSearch, isSearchMode } = store.character;
+    const { characters, characterSearch, isSearchMode } = store.characters;
     return {
       characters,
       characterSearch,
@@ -64,7 +74,7 @@ export default function CharacterList() {
   useEffect(() => {
     if (isSearchMode) {
       if (isSuccessSearchCharacters) {
-        setCharactersToList(characterSearch);
+        finishSearchingCharacters(characterSearch);
       }
     } else if (isSuccessGetCharacters) {
       setCharactersToList(characters);
@@ -77,6 +87,12 @@ export default function CharacterList() {
     isSuccessSearchCharacters
   ]);
 
+  useEffect(() => {
+    if (isLoadingSearchCharacters) {
+      setIsDoneSearchingCharacters(false);
+    }
+  }, [isLoadingGetCharacters, isLoadingSearchCharacters]);
+
   if (isErrorGetCharacters || isErrorSearchCharacters) {
     return (
       <Empty
@@ -86,7 +102,7 @@ export default function CharacterList() {
     );
   }
 
-  if (isLoadingSearchCharacters) {
+  if (isSearchMode && !isDoneSearchingCharacters) {
     return <Loading />;
   }
 
