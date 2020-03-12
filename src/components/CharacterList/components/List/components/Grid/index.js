@@ -5,13 +5,14 @@ import { Wrapper } from "./styles";
 export default function Grid({ characters, isLoading }) {
   return (
     <Wrapper>
-      {characters.map(({ name, thumbnail }, index) => {
+      {characters.map(({ id, name, thumbnail }, index) => {
         const { path, extension } = thumbnail;
         return (
           <CharacterCard
             key={index}
+            id={id}
             name={name}
-            url={`${path}.${extension}`}
+            imageUrl={`${path}.${extension}`}
             isLoading={isLoading}
           />
         );
