@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { createMiddleware } from "redux-api-middleware";
-import api from "api";
+import api from "services/api";
 import characterReducer from "components/CharacterList/reducer";
-import statusReducer from "api/reducer";
+import characterInfoReducer from "components/CharacterInfo/reducer";
+import statusReducer from "services/api/reducer";
 
 const apiMiddleware = createMiddleware({
   fetch: api,
@@ -11,7 +12,8 @@ const apiMiddleware = createMiddleware({
 const createStoreWithMiddleware = applyMiddleware(apiMiddleware)(createStore);
 
 const reducer = combineReducers({
-  character: characterReducer,
+  characters: characterReducer,
+  character: combineReducers({ info: characterInfoReducer }),
   status: statusReducer
 });
 
