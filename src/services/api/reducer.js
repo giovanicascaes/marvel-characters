@@ -32,7 +32,7 @@ function getRequestData(actionType) {
 }
 
 export default function statuReducer(state = {}, action) {
-  const { type } = action;
+  const { type, payload } = action;
 
   const requestData = getRequestData(type);
 
@@ -42,10 +42,25 @@ export default function statuReducer(state = {}, action) {
 
   const [requestName, requestState] = requestData;
 
-  return {
+  const newState = {
     ...state,
     [requestName]: getStatusByRequestState(requestState)
   };
+
+  if (payload && payload.reset) {
+    return {
+      ...newState,
+      ...payload.reset
+        .map(resetType => getRequestData(resetType))
+        .filter(requestData => !!requestData)
+        .reduce((prev, [requestName]) => ({
+          ...prev,
+          [requestName]: IDLE
+        }))
+    };
+  }
+
+  return newState;
 }
 
 function isStatus(store, status, actionType) {

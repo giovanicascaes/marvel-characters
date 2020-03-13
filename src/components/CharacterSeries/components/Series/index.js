@@ -4,7 +4,6 @@ import Emptiable from "components/Emptiable";
 import Serie from "./components/Serie";
 
 export default function Series({ isLoading, series }) {
-  console.log("series:", series);
   return (
     <>
       <Skeleton loading={isLoading} active paragraph={false}>

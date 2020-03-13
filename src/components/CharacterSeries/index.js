@@ -10,7 +10,6 @@ import {
 } from "services/api/reducer";
 import { CHARACTER_GET_SERIES_REQUEST } from "./actions";
 import { CHARACTER_GET_INFO_REQUEST } from "components/CharacterInfo/actions";
-import Empty from "components/Empty";
 import { API_ITEMS_PER_PAGE } from "constants/parameters";
 
 export default function CharcterSeries() {
@@ -53,12 +52,7 @@ export default function CharcterSeries() {
   }, [isSuccess, series]);
 
   if (isError) {
-    return (
-      <Empty
-        title="Ocorreu um erro ao buscar os detalhes do personagem"
-        subtitle="Por favor, tente novamente mais tarde"
-      />
-    );
+    return null;
   }
 
   return <Series isLoading={isLoading} series={seriesToList} />;

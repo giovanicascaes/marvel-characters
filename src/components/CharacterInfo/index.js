@@ -10,7 +10,6 @@ import {
 } from "services/api/reducer";
 import { CHARACTER_GET_INFO_REQUEST } from "./actions";
 import { CHARACTER_GET_SERIES_REQUEST } from "components/CharacterSeries/actions";
-import Empty from "components/Empty";
 
 export default function CharcterInfo() {
   const { character, isLoading, isSuccess, isError } = useSelector(store => ({
@@ -39,13 +38,9 @@ export default function CharcterInfo() {
   }, [characterId, dispatch]);
 
   if (isError) {
-    return (
-      <Empty
-        title="Ocorreu um erro ao buscar os detalhes do personagem"
-        subtitle="Por favor, tente novamente mais tarde"
-      />
-    );
+    return null;
   }
+
   const { thumbnail, id, name, description } = character;
 
   const infoProps = isSuccess

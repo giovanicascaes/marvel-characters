@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  text-align: center;
 `;
 
 export const Title = styled.span`
@@ -13,6 +14,7 @@ export const Title = styled.span`
   font-size: 22px;
   color: grey;
   display: block;
+  margin-bottom: 10px;
 `;
 
 export const SubTitle = styled.span`

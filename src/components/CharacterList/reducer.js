@@ -16,7 +16,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case CHARACTER_GET_SUCCESS:
       return {
         ...state,
-        characters: action.payload.data.results,
+        characters: action.payload.response.data.results,
         characterSearch: []
       };
 

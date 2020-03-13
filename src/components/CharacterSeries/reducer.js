@@ -1,7 +1,5 @@
-import {
-  CHARACTER_GET_SERIES_SUCCESS,
-  CHARACTER_GET_SERIES_RESET
-} from "./actions";
+import { CHARACTER_GET_SERIES_SUCCESS } from "./actions";
+import { CHARACTER_GET_SUCCESS } from "components/CharacterList/actions";
 
 const INITIAL_STATE = [];
 
@@ -10,7 +8,7 @@ export default function charcterInfoReducer(state = INITIAL_STATE, action) {
     case CHARACTER_GET_SERIES_SUCCESS:
       return action.payload.data.results;
 
-    case CHARACTER_GET_SERIES_RESET:
+    case CHARACTER_GET_SUCCESS:
       return INITIAL_STATE;
 
     default:

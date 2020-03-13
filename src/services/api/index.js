@@ -7,6 +7,9 @@ const ONE_DAY = 1000 * 60 * 60 * 24;
 
 export const createAction = rsaa => {
   const [RESQUEST_TYPE, SUCCESS_TYPE, FAILURE_TYPE] = rsaa.types;
+
+  if (typeof SUCCESS_TYPE !== "string") return doCreateAction(rsaa);
+
   return doCreateAction({
     ...rsaa,
     types: [
