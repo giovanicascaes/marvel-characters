@@ -6,15 +6,16 @@ import { isActionFailure } from "services/api/reducer";
 import { CHARACTER_GET_INFO_REQUEST } from "components/CharacterInfo/actions";
 import { CHARACTER_GET_SERIES_REQUEST } from "components/CharacterSeries/actions";
 import Empty from "components/Empty";
+import Header from "./components/Header";
 
 export default function CharacterDetails() {
-  const isError = useSelector(store =>
-    isActionFailure(
+  const { isError } = useSelector(store => ({
+    isError: isActionFailure(
       store,
       CHARACTER_GET_INFO_REQUEST,
       CHARACTER_GET_SERIES_REQUEST
     )
-  );
+  }));
 
   if (isError) {
     return (
@@ -27,6 +28,7 @@ export default function CharacterDetails() {
 
   return (
     <>
+      <Header />
       <CharacterInfo />
       <CharacterSeries />
     </>

@@ -13,7 +13,7 @@ import { CHARACTER_GET_SERIES_REQUEST } from "components/CharacterSeries/actions
 
 export default function CharcterInfo() {
   const { character, isLoading, isSuccess, isError } = useSelector(store => ({
-    character: store.character.info,
+    character: store.character.info.data,
     isLoading: isActionLoading(
       store,
       CHARACTER_GET_INFO_REQUEST,

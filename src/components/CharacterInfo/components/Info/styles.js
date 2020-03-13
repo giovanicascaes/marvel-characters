@@ -20,7 +20,7 @@ export const StyledCover = styled(Cover).attrs({
     css`
       box-shadow: 0px 10px 30px -10px rgba(0, 0, 0, 0.5);
     `};
-  width: 380px;
+  width: 350px;
   height: ${COVER_HEIGHT}px;
   margin-bottom: 80px;
 `;
