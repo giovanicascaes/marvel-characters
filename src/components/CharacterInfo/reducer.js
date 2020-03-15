@@ -1,8 +1,8 @@
-import { CHARACTER_GET_INFO_SUCCESS } from "./actions";
+import { CHARACTER_GET_INFO_SUCCESS, CHARACTER_TOGGLE_EDIT } from "./actions";
 import { CHARACTER_GET_SUCCESS } from "components/CharacterList/actions";
 
 const INITIAL_STATE = {
-  editing: false,
+  isEditing: false,
   data: {}
 };
 
@@ -16,6 +16,12 @@ export default function charcterInfoReducer(state = INITIAL_STATE, action) {
 
     case CHARACTER_GET_SUCCESS:
       return INITIAL_STATE;
+
+    case CHARACTER_TOGGLE_EDIT:
+      return {
+        ...state,
+        isEditing: !state.isEditing
+      };
 
     default:
       return state;

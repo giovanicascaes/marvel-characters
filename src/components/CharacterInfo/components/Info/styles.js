@@ -14,11 +14,11 @@ export const Wrapper = styled.div`
 export const StyledCover = styled(Cover).attrs({
   cardHeight: COVER_HEIGHT
 })`
-  border-radius: 15px;
+  border-radius: 10px;
   ${props =>
     !props.isLoading &&
     css`
-      box-shadow: 0px 10px 30px -10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.5);
     `};
   width: 350px;
   height: ${COVER_HEIGHT}px;

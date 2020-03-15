@@ -6,20 +6,20 @@ import md5 from "blueimp-md5";
 const ONE_DAY = 1000 * 60 * 60 * 24;
 
 export const createAction = rsaa => {
-  const [RESQUEST_TYPE, SUCCESS_TYPE, FAILURE_TYPE] = rsaa.types;
+  let [RESQUEST_TYPE, SUCCESS_TYPE, FAILURE_TYPE] = rsaa.types;
 
-  if (typeof SUCCESS_TYPE !== "string") return doCreateAction(rsaa);
+  if (typeof SUCCESS_TYPE === "string") {
+    SUCCESS_TYPE = {
+      type: SUCCESS_TYPE,
+      payload: (_action, _state, res) => res.data
+    };
+  } else if (!SUCCESS_TYPE.payload) {
+    SUCCESS_TYPE.payload = (_action, _state, res) => res.data;
+  }
 
   return doCreateAction({
     ...rsaa,
-    types: [
-      RESQUEST_TYPE,
-      {
-        type: SUCCESS_TYPE,
-        payload: (_action, _state, res) => res.data
-      },
-      FAILURE_TYPE
-    ]
+    types: [RESQUEST_TYPE, SUCCESS_TYPE, FAILURE_TYPE]
   });
 };
 

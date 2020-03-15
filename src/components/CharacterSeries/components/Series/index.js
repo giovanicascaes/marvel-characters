@@ -7,7 +7,7 @@ export default function Series({ isLoading, series }) {
   return (
     <>
       <Skeleton loading={isLoading} active paragraph={false}>
-        <h3 style={{ fontWeight: "bold" }}>Series</h3>
+        <h3>Series</h3>
       </Skeleton>
       <Emptiable titleWhenEmpty="O personagem não apareceu em nenhuma série">
         {(isLoading || series.length) && (

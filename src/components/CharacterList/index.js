@@ -12,6 +12,7 @@ import {
 import { CHARACTER_GET_REQUEST } from "./actions";
 import { CHARACTER_SEARCH_REQUEST } from "components/Search/actions";
 import Loading from "components/Loading";
+import { getUpdatedCharacterList } from "services/storage";
 
 export default function CharacterList() {
   const [charactersToList, setCharactersToList] = useState(
@@ -24,9 +25,9 @@ export default function CharacterList() {
     false
   );
 
-  const finishSearchingCharacters = charactersToSet => {
-    setCharactersToList(charactersToSet);
-    setIsDoneSearchingCharacters(true);
+  const updateCharacterListBeforeSet = characters => {
+    const updatedCharacterslist = getUpdatedCharacterList(characters);
+    setCharactersToList(updatedCharacterslist);
   };
 
   const dispatch = useDispatch();
@@ -67,17 +68,18 @@ export default function CharacterList() {
 
   useEffect(() => {
     if (isSuccessGetCharacters) {
-      setCharactersToList(characters);
+      updateCharacterListBeforeSet(characters);
     }
   }, [characters, isSuccessGetCharacters]);
 
   useEffect(() => {
     if (isSearchMode) {
       if (isSuccessSearchCharacters) {
-        finishSearchingCharacters(characterSearch);
+        updateCharacterListBeforeSet(characterSearch);
+        setIsDoneSearchingCharacters(true);
       }
     } else if (isSuccessGetCharacters) {
-      setCharactersToList(characters);
+      updateCharacterListBeforeSet(characters);
     }
   }, [
     characterSearch,

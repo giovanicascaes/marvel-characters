@@ -4,7 +4,7 @@ export const CHARACTER_GET_INFO_REQUEST = "character/GET_INFO_REQUEST";
 export const CHARACTER_GET_INFO_SUCCESS = "character/GET_INFO_SUCCESS";
 export const CHARACTER_GET_INFO_FAILURE = "character/GET_INFO_FAILURE";
 
-export const CHARACTER_EDIT = "character/CHARACTER_EDIT";
+export const CHARACTER_TOGGLE_EDIT = "character/CHARACTER_TOGGLE_EDIT";
 
 export const getCharacterInfo = characterId =>
   createAction({
@@ -17,6 +17,6 @@ export const getCharacterInfo = characterId =>
     ]
   });
 
-export const editCharacter = () => ({
-  type: CHARACTER_EDIT
+export const toggleEditCharacter = () => ({
+  type: CHARACTER_TOGGLE_EDIT
 });

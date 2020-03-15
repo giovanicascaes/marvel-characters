@@ -2,22 +2,23 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Wrapper } from "./styles";
 import { Button } from "antd";
-import { editCharacter } from "components/CharacterInfo/actions";
+import { toggleEditCharacter } from "components/CharacterInfo/actions";
 import { CHARACTER_GET_INFO_REQUEST } from "components/CharacterInfo/actions";
 import { CHARACTER_GET_SERIES_REQUEST } from "components/CharacterSeries/actions";
 import { isActionLoading } from "services/api/reducer";
 
 export default function Header() {
   const dispatch = useDispatch();
-  const isLoadingCharacter = useSelector(store =>
-    isActionLoading(
+  const { isLoadingCharacter, isEditing } = useSelector(store => ({
+    isLoadingCharacter: isActionLoading(
       store,
       CHARACTER_GET_INFO_REQUEST,
       CHARACTER_GET_SERIES_REQUEST
-    )
-  );
+    ),
+    isEditing: store.character.info.isEditing
+  }));
 
-  const onEdit = () => dispatch(editCharacter());
+  const onEdit = () => dispatch(toggleEditCharacter());
 
   return (
     <Wrapper>
@@ -26,7 +27,7 @@ export default function Header() {
         onClick={onEdit}
         style={{ visibility: isLoadingCharacter ? "hidden" : "visible" }}
       >
-        Edit
+        {isEditing ? "Cancel" : "Edit"}
       </Button>
     </Wrapper>
   );

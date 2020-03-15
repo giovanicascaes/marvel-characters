@@ -11,25 +11,31 @@ import {
 import { CHARACTER_GET_INFO_REQUEST } from "./actions";
 import { CHARACTER_GET_SERIES_REQUEST } from "components/CharacterSeries/actions";
 
-export default function CharcterInfo() {
-  const { character, isLoading, isSuccess, isError } = useSelector(store => ({
-    character: store.character.info.data,
-    isLoading: isActionLoading(
-      store,
-      CHARACTER_GET_INFO_REQUEST,
-      CHARACTER_GET_SERIES_REQUEST
-    ),
-    isSuccess: isActionSuccess(
-      store,
-      CHARACTER_GET_INFO_REQUEST,
-      CHARACTER_GET_SERIES_REQUEST
-    ),
-    isError: isActionFailure(
-      store,
-      CHARACTER_GET_INFO_REQUEST,
-      CHARACTER_GET_SERIES_REQUEST
-    )
-  }));
+export default function CharacterInfo() {
+  const { character, isLoading, isSuccess, isError, isEditing } = useSelector(
+    store => {
+      const { data, isEditing } = store.character.info;
+      return {
+        character: data,
+        isLoading: isActionLoading(
+          store,
+          CHARACTER_GET_INFO_REQUEST,
+          CHARACTER_GET_SERIES_REQUEST
+        ),
+        isSuccess: isActionSuccess(
+          store,
+          CHARACTER_GET_INFO_REQUEST,
+          CHARACTER_GET_SERIES_REQUEST
+        ),
+        isError: isActionFailure(
+          store,
+          CHARACTER_GET_INFO_REQUEST,
+          CHARACTER_GET_SERIES_REQUEST
+        ),
+        isEditing
+      };
+    }
+  );
   const dispatch = useDispatch();
   const { characterId } = useParams();
 
@@ -41,11 +47,13 @@ export default function CharcterInfo() {
     return null;
   }
 
-  const { thumbnail, id, name, description } = character;
+  const { thumbnail, imageUrl, id, name, description } = character;
 
   const infoProps = isSuccess
     ? {
-        imageUrl: `${thumbnail.path}.${thumbnail.extension}`,
+        imageUrl: thumbnail
+          ? `${thumbnail.path}.${thumbnail.extension}`
+          : imageUrl,
         id,
         name,
         description
@@ -57,5 +65,5 @@ export default function CharcterInfo() {
         description: ""
       };
 
-  return <Info isLoading={isLoading} {...infoProps} />;
+  return <Info {...infoProps} isLoading={isLoading} isEditing={isEditing} />;
 }

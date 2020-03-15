@@ -5,18 +5,17 @@ import { Wrapper } from "./styles";
 export default function Grid({ characters, isLoading }) {
   return (
     <Wrapper>
-      {characters.map(({ id, name, thumbnail }, index) => {
-        const { path, extension } = thumbnail;
-        return (
-          <CharacterCard
-            key={index}
-            id={id}
-            name={name}
-            imageUrl={`${path}.${extension}`}
-            isLoading={isLoading}
-          />
-        );
-      })}
+      {characters.map(({ id, name, thumbnail, imageUrl }, index) => (
+        <CharacterCard
+          key={index}
+          id={id}
+          name={name}
+          imageUrl={
+            thumbnail ? `${thumbnail.path}.${thumbnail.extension}` : imageUrl
+          }
+          isLoading={isLoading}
+        />
+      ))}
     </Wrapper>
   );
 }
