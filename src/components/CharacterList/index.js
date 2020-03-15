@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCharacters } from "./actions";
 import List from "./components/List";
-import Empty from "../Empty";
+import Message from "../Message";
 import { API_ITEMS_PER_PAGE } from "constants/parameters";
 import {
   isActionLoading,
@@ -97,7 +97,7 @@ export default function CharacterList() {
 
   if (isErrorGetCharacters || isErrorSearchCharacters) {
     return (
-      <Empty
+      <Message
         title="Ocorreu um erro ao buscar os personagens"
         subtitle="Por favor, tente novamente mais tarde"
       />

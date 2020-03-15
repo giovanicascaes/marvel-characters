@@ -1,9 +1,9 @@
 import React from "react";
 import { Wrapper, Title, SubTitle } from "./styles";
 
-export default function Empty({
-  title = "Nada aqui :(",
-  subtitle = "Nenhum registro encontrado"
+export default function Message({
+  title = "Nothing here :(",
+  subtitle = "No records found"
 }) {
   return (
     <Wrapper>

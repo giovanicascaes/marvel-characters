@@ -1,5 +1,5 @@
 import React from "react";
-import Empty from "../Empty";
+import Message from "../Message";
 
 export default function Emptiable({
   children,
@@ -7,7 +7,7 @@ export default function Emptiable({
   subtitleWhenEmpty
 }) {
   if (!children) {
-    return <Empty title={titleWhenEmpty} subtitle={subtitleWhenEmpty} />;
+    return <Message title={titleWhenEmpty} subtitle={subtitleWhenEmpty} />;
   }
   return <>{children}</>;
 }

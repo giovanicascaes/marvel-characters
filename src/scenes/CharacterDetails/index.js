@@ -5,7 +5,7 @@ import CharacterSeries from "components/CharacterSeries";
 import { isActionFailure } from "services/api/reducer";
 import { CHARACTER_GET_INFO_REQUEST } from "components/CharacterInfo/actions";
 import { CHARACTER_GET_SERIES_REQUEST } from "components/CharacterSeries/actions";
-import Empty from "components/Empty";
+import Message from "components/Message";
 import Header from "./components/Header";
 
 export default function CharacterDetails() {
@@ -19,7 +19,7 @@ export default function CharacterDetails() {
 
   if (isError) {
     return (
-      <Empty
+      <Message
         title="Ocorreu um erro ao buscar os detalhes do personagem"
         subtitle="Por favor, tente novamente mais tarde"
       />
