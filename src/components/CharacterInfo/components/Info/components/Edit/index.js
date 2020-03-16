@@ -8,14 +8,13 @@ import TextArea from "./components/TextArea";
 import { Row, Col, Button, Descriptions, message } from "antd";
 import { FormContainer } from "./styles";
 import { saveCharacter } from "services/storage";
-import { toggleEditCharacter } from "components/CharacterInfo/actions";
+import { updateCharacterInfo } from "components/CharacterInfo/actions";
 
 export default function Edit({
   id = 0,
   name = "",
   description = "",
-  imageUrl = "",
-  onEditCharacter
+  imageUrl = ""
 }) {
   const dispatch = useDispatch();
 
@@ -31,8 +30,7 @@ export default function Edit({
         onSubmit={(values, { setSubmitting }) => {
           saveCharacter({ ...values, imageUrl });
           setSubmitting(false);
-          dispatch(toggleEditCharacter());
-          onEditCharacter();
+          dispatch(updateCharacterInfo(values));
           message.info("Successfully edited");
         }}
       >
