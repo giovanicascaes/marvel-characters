@@ -1,8 +1,8 @@
 {
-  "name": "softplan-test",
+  "name": "marvel-characters",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://giovanicascaes.github.io/marvel-characters/marvel-characters",
+  "homepage": "https://giovanicascaes.github.io/marvel-characters",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
