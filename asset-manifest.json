@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/marvel-characters/static/js/main.82ccc51f.chunk.js",
-    "main.js.map": "/marvel-characters/static/js/main.82ccc51f.chunk.js.map",
+    "main.js": "/marvel-characters/static/js/main.5595f86d.chunk.js",
+    "main.js.map": "/marvel-characters/static/js/main.5595f86d.chunk.js.map",
     "runtime-main.js": "/marvel-characters/static/js/runtime-main.688bb229.js",
     "runtime-main.js.map": "/marvel-characters/static/js/runtime-main.688bb229.js.map",
     "static/css/2.03d7f783.chunk.css": "/marvel-characters/static/css/2.03d7f783.chunk.css",
     "static/js/2.621bae12.chunk.js": "/marvel-characters/static/js/2.621bae12.chunk.js",
     "static/js/2.621bae12.chunk.js.map": "/marvel-characters/static/js/2.621bae12.chunk.js.map",
     "index.html": "/marvel-characters/index.html",
-    "precache-manifest.398daeed9b2e08d1e3160b8420eab86c.js": "/marvel-characters/precache-manifest.398daeed9b2e08d1e3160b8420eab86c.js",
+    "precache-manifest.c91b2da7c956fe6e2d545a53c43846ea.js": "/marvel-characters/precache-manifest.c91b2da7c956fe6e2d545a53c43846ea.js",
     "service-worker.js": "/marvel-characters/service-worker.js",
     "static/css/2.03d7f783.chunk.css.map": "/marvel-characters/static/css/2.03d7f783.chunk.css.map",
     "static/js/2.621bae12.chunk.js.LICENSE.txt": "/marvel-characters/static/js/2.621bae12.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.688bb229.js",
     "static/css/2.03d7f783.chunk.css",
     "static/js/2.621bae12.chunk.js",
-    "static/js/main.82ccc51f.chunk.js"
+    "static/js/main.5595f86d.chunk.js"
   ]
 }

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e2b781996d48238f1e3ed676ad13a9a2",
+    "revision": "71736e2ce41015ee20aa5dbc7d819129",
     "url": "/marvel-characters/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/marvel-characters/static/js/2.621bae12.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f949f64f1391a6c9c7cd",
-    "url": "/marvel-characters/static/js/main.82ccc51f.chunk.js"
+    "revision": "32faec66261cf89259bc",
+    "url": "/marvel-characters/static/js/main.5595f86d.chunk.js"
   },
   {
     "revision": "ece8854fa2b09eed9639",
