@@ -1,3 +1,7 @@
+# marvel-characters
+
+A React app that lists Marvel characters, along with their basic info and list of series
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
