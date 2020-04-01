@@ -3,6 +3,8 @@ import { createAction as doCreateAction } from "redux-api-middleware";
 import { setupCache } from "axios-cache-adapter";
 import md5 from "blueimp-md5";
 
+export const REQUEST_TYPE_INDEX = 0;
+
 const ONE_DAY = 1000 * 60 * 60 * 24;
 
 export const createAction = rsaa => {

@@ -10,8 +10,12 @@ export default function Router({ characterName, characterId }) {
     <>
       <BrowserRouter>
         <Switch>
+          <SceneRoute path="/" exact title="Marvel Characters">
+            <Home />
+          </SceneRoute>
           <SceneRoute
             path="/character/:characterId"
+            exact
             onBack={history => history.push("/")}
             title={characterName || "Loading..."}
             subtitle={characterId && `ID: ${characterId}`}
@@ -23,9 +27,6 @@ export default function Router({ characterName, characterId }) {
             ]}
           >
             <CharacterDetails />
-          </SceneRoute>
-          <SceneRoute path="/" exact title="Marvel Characters">
-            <Home />
           </SceneRoute>
           <SceneRoute>
             <Result

@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Wrapper } from "./styles";
 import { Button } from "antd";
-import { toggleEditCharacter } from "components/CharacterInfo/actions";
-import { CHARACTER_GET_INFO_REQUEST } from "components/CharacterInfo/actions";
-import { CHARACTER_GET_SERIES_REQUEST } from "components/CharacterSeries/actions";
+import { toggleEditCharacter } from "scenes/CharacterDetails/components/CharacterInfo/actions";
+import { CHARACTER_GET_INFO_REQUEST } from "scenes/CharacterDetails/components/CharacterInfo/actions";
+import { CHARACTER_GET_SERIES_REQUEST } from "scenes/CharacterDetails/components/CharacterSeries/actions";
 import { isActionLoading } from "services/api/reducer";
 
 export default function Header() {

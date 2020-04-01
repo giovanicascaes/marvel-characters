@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import "antd/dist/antd.css";
 import App from "./scenes";
 import * as serviceWorker from "./serviceWorker";
-import configureStore from "store";
+import configureStore from "./store";
 import GlobalStyle from "styles/GlobalStyle";
 
 const store = configureStore();

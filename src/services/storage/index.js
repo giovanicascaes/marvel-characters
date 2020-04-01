@@ -21,22 +21,53 @@ export function getCharacter(id) {
   return JSON.parse(characters).find(character => character.id === id);
 }
 
-export function getUpdatedCharacterList(characters) {
-  return characters.map(character => {
-    const savedCharacter = getCharacter(character.id);
+function getAllCharacters() {
+  const { [key]: characters } = window.localStorage;
 
-    if (!savedCharacter) return character;
+  if (!characters) return [];
 
-    return { ...character, ...savedCharacter };
-  });
+  return JSON.parse(characters);
 }
 
-export function searchCharacters(text) {
+function searchCharacters(text) {
   const { [key]: characters } = window.localStorage;
 
   if (!characters) return [];
 
   return JSON.parse(characters).filter(({ id, name, description }) =>
-    [id, name, description].some(info => String(info).startsWith(text))
+    [id, name, description].some(info =>
+      String(info)
+        .toLowerCase()
+        .startsWith(text.toLowerCase())
+    )
   );
+}
+
+export function mergeResultsAndStorage(results, searchText = null) {
+  let storageResults;
+
+  if (searchText) {
+    storageResults = searchCharacters(searchText);
+
+    if (!results.length) {
+      return storageResults;
+    }
+  } else {
+    storageResults = getAllCharacters();
+  }
+
+  return results.map(character => {
+    const storedCharacter = storageResults.find(
+      storedCharacter => storedCharacter.id === character.id
+    );
+    return storedCharacter ? { ...character, ...storedCharacter } : character;
+  });
+}
+
+export function putUpdateCharacterInStorage(characters, characterToUpdate) {
+  return characters.map(character => {
+    if (character.id !== characterToUpdate.id) return character;
+
+    return { ...character, ...characterToUpdate };
+  });
 }
