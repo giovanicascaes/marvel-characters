@@ -35,7 +35,7 @@ export default function SceneBase({
       >
         <LogoWrapper>
           <img
-            src="../../res/img/marvel-logo.png"
+            src="res/img/marvel-logo.png"
             alt="Marvel Logo"
             style={{ height: 50 }}
           />
