@@ -29,7 +29,7 @@ export default function Cover({
           <BaseImg
             {...imageProps}
             ref={ref}
-            src={"res/img/loading.gif"}
+            src={`${process.env.PUBLIC_URL}/res/img/loading.gif`}
             alt={"Loading icon"}
             isHidden={imageState === ImageState.LoadSuccess}
           />

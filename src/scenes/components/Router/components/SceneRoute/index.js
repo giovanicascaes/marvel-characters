@@ -8,11 +8,13 @@ export default function SceneRoute({
   routes,
   onBack,
   children,
+  path,
   ...otherProps
 }) {
   return (
     <Route
       {...otherProps}
+      path={`${process.env.PUBLIC_URL}/${path}`}
       render={({ history }) => (
         <SceneBase
           title={title}
