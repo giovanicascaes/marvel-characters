@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Link } from "react-router-dom";
+import { HashRouter, Switch, Link } from "react-router-dom";
 import Home from "../../Home";
 import CharacterDetails from "../../CharacterDetails";
 import SceneRoute from "./components/SceneRoute";
@@ -8,7 +8,7 @@ import { Result } from "antd";
 export default function Router({ characterName, characterId }) {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <SceneRoute path="/" exact title="Marvel Characters">
             <Home />
@@ -37,7 +37,7 @@ export default function Router({ characterName, characterId }) {
             />
           </SceneRoute>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
